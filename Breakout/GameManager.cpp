@@ -35,15 +35,24 @@ void GameManager::initialize()
 void GameManager::handleMovement(const float dt)
 {
 	// Keyboard movement.
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		_paddle->moveRight(dt);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		_paddle->moveLeft(dt);
 
 	// Mouse movement.
-	sf::Vector2i mousePos = sf::Mouse::getPosition();
-
+	auto mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition(*_window));
 	float paddleCenter = _paddle->getPosition().x + _paddle->getSize().x / 2.0f;
+
+	std::printf("%.2f\n", paddleCenter);
+	std::printf("Mouse Pos: %.2f, %.2f\n", mousePos.x, mousePos.y);
+
+	if (mousePos.x > paddleCenter)
+		_paddle->moveRight(dt);
+	if (mousePos.x < paddleCenter)
+		_paddle->moveLeft(dt);
 }
 
 void GameManager::update(float dt)

@@ -5,6 +5,8 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1000, 800), "Breakout");
+	window.setFramerateLimit(60);
+
 	GameManager gameManager(&window);
 	gameManager.initialize();
 
