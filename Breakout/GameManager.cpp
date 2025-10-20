@@ -54,9 +54,9 @@ void GameManager::handleMovement(const float dt)
 		_paddle->moveLeft(dt);
 }
 
-void GameManager::handleInput(float dt)
+void GameManager::handleInput(const sf::Event::KeyEvent key)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	if (key.code == sf::Keyboard::P)
 	{
 		if (!_pause && _pauseHold <= 0.f)
 		{
@@ -71,6 +71,8 @@ void GameManager::handleInput(float dt)
 			_pauseHold = PAUSE_TIME_BUFFER;
 		}
 	}
+	if (key.code == sf::Keyboard::M)
+		_usingMouse = !_usingMouse;
 }
 
 void GameManager::update(float dt)

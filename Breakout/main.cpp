@@ -21,13 +21,17 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			if (event.key.scancode == sf::Keyboard::Scan::Escape)
-				window.close();
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.scancode == sf::Keyboard::Scan::Escape)
+					window.close();
+
+				gameManager.handleInput(event.key);
+			}
 		}
 
 		deltaTime = clock.restart().asSeconds();
 
-		gameManager.handleInput(deltaTime);
 		gameManager.update(deltaTime);
 
 		window.clear();

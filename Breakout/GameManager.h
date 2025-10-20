@@ -16,7 +16,7 @@ public:
 
 	void initialize();
 	void handleMovement(float dt);
-	void handleInput(float dt);
+	void handleInput(sf::Event::KeyEvent key);
 	void update(float dt);
 	void render();
 
