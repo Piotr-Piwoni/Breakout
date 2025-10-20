@@ -32,6 +32,15 @@ void GameManager::initialize()
 	_brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
 }
 
+void GameManager::handleMovement(const float dt)
+{
+	// move paddle
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		_paddle->moveRight(dt);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		_paddle->moveLeft(dt);
+}
+
 void GameManager::update(float dt)
 {
 	_powerupInEffect = _powerupManager->getPowerupInEffect();
@@ -84,11 +93,7 @@ void GameManager::update(float dt)
 		_timeLastPowerupSpawned = _time;
 	}
 
-	// move paddle
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		_paddle->moveRight(dt);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		_paddle->moveLeft(dt);
+	handleMovement(dt);
 
 	// update everything
 	_paddle->update(dt);

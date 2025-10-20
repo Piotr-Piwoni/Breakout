@@ -15,6 +15,7 @@ public:
 	GameManager(sf::RenderWindow* window);
 
 	void initialize();
+	void handleMovement(float dt);
 	void update(float dt);
 	void render();
 
