@@ -73,3 +73,12 @@ bool PowerupBase::isAlive()
 {
 	return _isAlive;
 }
+
+void PowerupBase::setDuration(const float dur)
+{
+	_maxDuration = dur;
+}
+float PowerupBase::getDuration() const
+{
+	return _maxDuration;
+}

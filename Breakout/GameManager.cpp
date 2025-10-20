@@ -92,7 +92,7 @@ void GameManager::update(float dt)
 	_paddle->update(dt);
 	_ball->update(dt);
 	_powerupManager->update(dt);
-	UpdateScreenShake(dt);
+	updateScreenShake(dt);
 }
 
 void GameManager::loseLife()
@@ -100,7 +100,7 @@ void GameManager::loseLife()
 	_lives--;
 	_ui->lifeLost(_lives);
 
-	StartScreenShake(0.4f, 12.0f);
+	startScreenShake(0.4f, 12.0f);
 }
 
 void GameManager::render()
@@ -118,7 +118,7 @@ void GameManager::levelComplete()
 	_levelComplete = true;
 }
 
-void GameManager::StartScreenShake(const float duration, const float force)
+void GameManager::startScreenShake(const float duration, const float force)
 {
 	_isShaking = true;
 	_shakeDuration = duration;
@@ -127,7 +127,7 @@ void GameManager::StartScreenShake(const float duration, const float force)
 	_originalViewCenter = _window->getView().getCenter();
 }
 
-void GameManager::UpdateScreenShake(const float dt)
+void GameManager::updateScreenShake(const float dt)
 {
 	if (!_isShaking)
 		return;

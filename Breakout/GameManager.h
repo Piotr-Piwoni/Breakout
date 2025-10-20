@@ -21,8 +21,8 @@ public:
 	void loseLife();
 	void levelComplete();
 
-	void StartScreenShake(float duration, float force);
-	void UpdateScreenShake(float dt);
+	void startScreenShake(float duration, float force);
+	void updateScreenShake(float dt);
 
 	Paddle* getPaddle() const;
 	BrickManager* getBrickManager() const;

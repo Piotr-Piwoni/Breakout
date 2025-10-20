@@ -25,6 +25,9 @@ public:
 	void setAlive(bool alive);
 	bool isAlive();
 
+	float getDuration() const;
+	void setDuration(float dur);
+
 protected: // Protected so derived classes can access these members
 	// Constants
 	static constexpr float RADIUS = 20.f; // size of powerup on screen
