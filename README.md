@@ -32,4 +32,8 @@ fire ball (green)
 * Implement commentary with calls to an LLM such as LLama
 
 # Time Details and Changelist
-<Add information to this section about the time you've taken for this task along with a professional changelist.>
+Time taken: xxx
+
+Work Done
+- Fixed implicated conversion(float, doable) warning in PowerupBase.cpp.
+- Implemented a screen shake effect on lose of life.
