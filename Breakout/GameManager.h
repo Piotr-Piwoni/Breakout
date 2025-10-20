@@ -13,12 +13,16 @@ class GameManager
 {
 public:
 	GameManager(sf::RenderWindow* window);
+
 	void initialize();
 	void update(float dt);
-	void loseLife();
 	void render();
+
+	void loseLife();
 	void levelComplete();
-	void powerupEffect(POWERUPS pu, float t);
+
+	void StartScreenShake(float duration, float force);
+	void UpdateScreenShake(float dt);
 
 	Paddle* getPaddle() const;
 	BrickManager* getBrickManager() const;
@@ -38,7 +42,7 @@ private:
 	// Screen shake Variables.
 	float _shakeDuration{0.0f};
 	float _shakeElapsed{0.0f};
-	float _shakeAmplitude{0.0f};
+	float _shakeForce{0.0f};
 	bool _isShaking{false};
 	sf::Vector2f _originalViewCenter{};
 

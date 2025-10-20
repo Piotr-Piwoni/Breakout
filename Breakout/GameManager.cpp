@@ -92,36 +92,7 @@ void GameManager::update(float dt)
 	_paddle->update(dt);
 	_ball->update(dt);
 	_powerupManager->update(dt);
-
-	// Screen shake update.
-	if (_isShaking)
-	{
-		_shakeElapsed += dt;
-		if (_shakeElapsed < _shakeDuration)
-		{
-			float progress = _shakeElapsed / _shakeDuration;
-			float intensity = _shakeAmplitude * (1.0f - progress);
-
-			sf::Vector2f offset;
-			std::random_device rd;
-			std::mt19937 gen(rd());
-			std::uniform_real_distribution randomVal(-1.0f, 1.0f);
-
-			offset.x = randomVal(gen) * intensity;
-			offset.y = randomVal(gen) * intensity;
-
-			sf::View view = _window->getView();
-			view.setCenter(_originalViewCenter + offset);
-			_window->setView(view);
-		}
-		else
-		{
-			_isShaking = false;
-			sf::View view = _window->getView();
-			view.setCenter(_originalViewCenter);
-			_window->setView(view);
-		}
-	}
+	UpdateScreenShake(dt);
 }
 
 void GameManager::loseLife()
@@ -129,14 +100,7 @@ void GameManager::loseLife()
 	_lives--;
 	_ui->lifeLost(_lives);
 
-	// TODO screen shake.
-
-	// Start screen shake.
-	_isShaking = true;
-	_shakeDuration = 0.4f;
-	_shakeAmplitude = 12.0f;
-	_shakeElapsed = 0.0f;
-	_originalViewCenter = _window->getView().getCenter();
+	StartScreenShake(0.4f, 12.0f);
 }
 
 void GameManager::render()
@@ -152,6 +116,48 @@ void GameManager::render()
 void GameManager::levelComplete()
 {
 	_levelComplete = true;
+}
+
+void GameManager::StartScreenShake(const float duration, const float force)
+{
+	_isShaking = true;
+	_shakeDuration = duration;
+	_shakeForce = force;
+	_shakeElapsed = 0.0f;
+	_originalViewCenter = _window->getView().getCenter();
+}
+
+void GameManager::UpdateScreenShake(const float dt)
+{
+	if (!_isShaking)
+		return;
+
+	_shakeElapsed += dt;
+	if (_shakeElapsed < _shakeDuration)
+	{
+		const float progress = _shakeElapsed / _shakeDuration;
+		const float intensity = _shakeForce * (1.0f - progress);
+
+		// Random number generate (-1 - 1).
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_real_distribution randomVal(-1.0f, 1.0f);
+
+		sf::Vector2f offset;
+		offset.x = randomVal(gen) * intensity;
+		offset.y = randomVal(gen) * intensity;
+
+		sf::View view = _window->getView();
+		view.setCenter(_originalViewCenter + offset);
+		_window->setView(view);
+	}
+	else
+	{
+		_isShaking = false;
+		sf::View view = _window->getView();
+		view.setCenter(_originalViewCenter);
+		_window->setView(view);
+	}
 }
 
 sf::RenderWindow* GameManager::getWindow() const { return _window; }
