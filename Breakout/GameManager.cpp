@@ -10,7 +10,7 @@ GameManager::GameManager(sf::RenderWindow* window) : _pause(false),
 	_window(window),
 	_paddle(nullptr), _ball(nullptr), _brickManager(nullptr),
 	_powerupManager(nullptr),
-	_messagingSystem(nullptr), _ui(nullptr), _soundManager{nullptr}
+	_messagingSystem(nullptr), _ui(nullptr)
 {
 	_font.loadFromFile("font/montS.ttf");
 	_masterText.setFont(_font);
@@ -27,13 +27,13 @@ void GameManager::initialize()
 	_ball = new Ball(_window, 400.0f, this);
 	_powerupManager = new PowerupManager(_window, _paddle, _ball);
 	_ui = new UI(_window, _lives, this);
-	_soundManager = new SoundManager();
 
 	// Create bricks
 	_brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
 
 	// Add sounds.
-	_soundManager->LoadFile("bop", "sounds/bop.wav");
+	SoundManager::Get().LoadFile("bop", "sounds/bop.wav");
+	SoundManager::Get().Play("bop");
 }
 
 void GameManager::handleMovement(const float dt)
@@ -118,7 +118,7 @@ void GameManager::update(float dt)
 	_paddle->update(dt);
 	_ball->update(dt);
 	_powerupManager->update(dt);
-	_soundManager->Update();
+	SoundManager::Get().Update();
 	updateScreenShake(dt);
 }
 
@@ -189,7 +189,6 @@ void GameManager::updateScreenShake(const float dt)
 
 sf::RenderWindow* GameManager::getWindow() const { return _window; }
 UI* GameManager::getUI() const { return _ui; }
-SoundManager* GameManager::getSoundsManager() const { return _soundManager; }
 Paddle* GameManager::getPaddle() const { return _paddle; }
 BrickManager* GameManager::getBrickManager() const { return _brickManager; }
 

@@ -6,6 +6,12 @@ SoundManager::SoundManager()
 	m_ActiveSounds.reserve(30);
 }
 
+SoundManager& SoundManager::Get()
+{
+	static SoundManager instance;
+	return instance;
+}
+
 void SoundManager::Play(const std::string& name)
 {
 	const auto i = m_Sounds.find(name);

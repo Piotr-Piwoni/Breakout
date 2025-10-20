@@ -12,7 +12,13 @@ struct ActiveSound
 class SoundManager
 {
 public:
-	SoundManager();
+	static SoundManager& Get();
+
+	SoundManager(const SoundManager&) = delete;
+	SoundManager& operator=(const SoundManager&) = delete;
+	SoundManager(SoundManager&&) = delete;
+	SoundManager& operator=(SoundManager&&) = delete;
+
 
 	void Play(const std::string& name);
 	void StopAll() const;
@@ -22,6 +28,9 @@ public:
 	bool IsPlaying(const std::string& name) const;
 
 	void Update();
+
+private:
+	SoundManager();
 
 private:
 	std::map<std::string, std::shared_ptr<sf::SoundBuffer>> m_Sounds{};
