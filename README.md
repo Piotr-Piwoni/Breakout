@@ -38,3 +38,6 @@ Work Done
 - Fixed implicated conversion(float, doable) warning in PowerupBase.cpp.
 - Implemented a screen shake effect on lose of life.
 - Implemented a progress bar for the powerup duration replacing the countdown.
+- Implemented mouse-based paddle movement.
+- Implemented toggling of the mouse-based paddle movement through the 'M' key.
+- Added a "handleInput()" to the GameManager class.
