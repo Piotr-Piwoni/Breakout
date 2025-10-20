@@ -34,11 +34,16 @@ void GameManager::initialize()
 
 void GameManager::handleMovement(const float dt)
 {
-	// move paddle
+	// Keyboard movement.
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		_paddle->moveRight(dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		_paddle->moveLeft(dt);
+
+	// Mouse movement.
+	sf::Vector2i mousePos = sf::Mouse::getPosition();
+
+	float paddleCenter = _paddle->getPosition().x + _paddle->getSize().x / 2.0f;
 }
 
 void GameManager::update(float dt)
