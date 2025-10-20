@@ -155,6 +155,7 @@
         <ClCompile Include="PowerupSlowBall.cpp"/>
         <ClCompile Include="PowerupSmallPaddle.cpp"/>
         <ClCompile Include="ProgressBar.cpp"/>
+        <ClCompile Include="SoundManager.cpp"/>
         <ClCompile Include="UI.cpp"/>
     </ItemGroup>
     <ItemGroup>
@@ -173,10 +174,11 @@
         <ClInclude Include="PowerupSlowBall.h"/>
         <ClInclude Include="PowerupSmallPaddle.h"/>
         <ClInclude Include="ProgressBar.hpp"/>
+        <ClInclude Include="SoundManager.hpp"/>
         <ClInclude Include="UI.h"/>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="sounds\bop.wav" />
+        <Content Include="sounds\bop.wav"/>
     </ItemGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
     <ImportGroup Label="ExtensionTargets">
