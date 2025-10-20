@@ -15,6 +15,7 @@ public:
 	void render();
 
 	void updatePowerupText(std::pair<POWERUPS, sf::Vector2f>);
+	void updatePowerupBar(std::pair<POWERUPS, sf::Vector2f>);
 
 	void lifeLost(int lives);
 

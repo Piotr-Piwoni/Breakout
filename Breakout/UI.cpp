@@ -65,6 +65,9 @@ void UI::updatePowerupText(std::pair<POWERUPS, sf::Vector2f> powerup)
 	}
 }
 
+void UI::updatePowerupBar(std::pair<POWERUPS, sf::Vector2f> powerup)
+{}
+
 void UI::lifeLost(int lives)
 {
 	_lives[_lives.size() - 1 - lives].setFillColor(sf::Color::Transparent);
