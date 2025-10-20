@@ -27,6 +27,7 @@ int main()
 
 		deltaTime = clock.restart().asSeconds();
 
+		gameManager.handleInput(deltaTime);
 		gameManager.update(deltaTime);
 
 		window.clear();

@@ -43,11 +43,10 @@ void GameManager::handleMovement(const float dt)
 		_paddle->moveLeft(dt);
 
 	// Mouse movement.
+	if (!_usingMouse)
+		return;
 	auto mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition(*_window));
 	float paddleCenter = _paddle->getPosition().x + _paddle->getSize().x / 2.0f;
-
-	std::printf("%.2f\n", paddleCenter);
-	std::printf("Mouse Pos: %.2f, %.2f\n", mousePos.x, mousePos.y);
 
 	if (mousePos.x > paddleCenter)
 		_paddle->moveRight(dt);
@@ -55,27 +54,8 @@ void GameManager::handleMovement(const float dt)
 		_paddle->moveLeft(dt);
 }
 
-void GameManager::update(float dt)
+void GameManager::handleInput(float dt)
 {
-	_powerupInEffect = _powerupManager->getPowerupInEffect();
-	//_ui->updatePowerupText(_powerupInEffect);
-	_ui->updatePowerupBar(_powerupInEffect);
-	_powerupInEffect.second.y -= dt;
-
-
-	if (_lives <= 0)
-	{
-		_masterText.setString("Game over.");
-		return;
-	}
-	if (_levelComplete)
-	{
-		_masterText.setString("Level completed.");
-		return;
-	}
-	// pause and pause handling
-	if (_pauseHold > 0.f)
-		_pauseHold -= dt;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
 		if (!_pause && _pauseHold <= 0.f)
@@ -91,10 +71,29 @@ void GameManager::update(float dt)
 			_pauseHold = PAUSE_TIME_BUFFER;
 		}
 	}
-	if (_pause)
+}
+
+void GameManager::update(float dt)
+{
+	_powerupInEffect = _powerupManager->getPowerupInEffect();
+	_ui->updatePowerupBar(_powerupInEffect);
+	_powerupInEffect.second.y -= dt;
+
+	if (_lives <= 0)
 	{
+		_masterText.setString("Game over.");
 		return;
 	}
+	if (_levelComplete)
+	{
+		_masterText.setString("Level completed.");
+		return;
+	}
+	// pause and pause handling
+	if (_pauseHold > 0.f)
+		_pauseHold -= dt;
+	if (_pause)
+		return;
 
 	// timer.
 	_time += dt;

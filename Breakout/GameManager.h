@@ -16,6 +16,7 @@ public:
 
 	void initialize();
 	void handleMovement(float dt);
+	void handleInput(float dt);
 	void update(float dt);
 	void render();
 
@@ -38,6 +39,7 @@ private:
 	float _timeLastPowerupSpawned;
 	int _lives;
 	bool _levelComplete;
+	bool _usingMouse{false};
 	std::pair<POWERUPS, sf::Vector2f> _powerupInEffect;
 
 	// Screen shake Variables.
