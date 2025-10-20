@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "CONSTANTS.h"
 #include "PowerupManager.h"
+#include "ProgressBar.hpp"
 
 class GameManager;
 
@@ -25,6 +26,8 @@ private:
 	sf::RenderWindow* _window;
 	sf::Font _font;
 	sf::Text _powerupText;
+	ProgressBar _progressBar;
+	sf::CircleShape _powerupIcon{20.0f};
 
 	std::vector<sf::CircleShape> _lives;
 
