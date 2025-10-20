@@ -6,7 +6,8 @@
 
 GameManager::GameManager(sf::RenderWindow* window) : _pause(false),
 	_pauseHold(0.f), _time(0.f), _timeLastPowerupSpawned(0.f), _lives(3),
-	_levelComplete(false), _powerupInEffect({none, 0.f}), _window(window),
+	_levelComplete(false), _powerupInEffect({none, {0.0f, 0.0f}}),
+	_window(window),
 	_paddle(nullptr), _ball(nullptr), _brickManager(nullptr),
 	_powerupManager(nullptr),
 	_messagingSystem(nullptr), _ui(nullptr)
@@ -35,7 +36,7 @@ void GameManager::update(float dt)
 {
 	_powerupInEffect = _powerupManager->getPowerupInEffect();
 	_ui->updatePowerupText(_powerupInEffect);
-	_powerupInEffect.second -= dt;
+	_powerupInEffect.second.y -= dt;
 
 
 	if (_lives <= 0)

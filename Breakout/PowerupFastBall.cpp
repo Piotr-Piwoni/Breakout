@@ -9,8 +9,8 @@ PowerupFastBall::PowerupFastBall(sf::RenderWindow* window, Paddle* paddle,
 PowerupFastBall::~PowerupFastBall()
 {}
 
-std::pair<POWERUPS, float> PowerupFastBall::applyEffect()
+std::pair<POWERUPS, sf::Vector2f> PowerupFastBall::applyEffect()
 {
 	_ball->setVelocity(2.f, _maxDuration);
-	return {fastBall, _maxDuration};
+	return {fastBall, {_maxDuration, _maxDuration}};
 }

@@ -10,8 +10,8 @@ PowerupSmallPaddle::PowerupSmallPaddle(sf::RenderWindow* window, Paddle* paddle,
 PowerupSmallPaddle::~PowerupSmallPaddle()
 {}
 
-std::pair<POWERUPS, float> PowerupSmallPaddle::applyEffect()
+std::pair<POWERUPS, sf::Vector2f> PowerupSmallPaddle::applyEffect()
 {
 	_paddle->setWidth(0.67f, _maxDuration);
-	return {smallPaddle, _maxDuration};
+	return {smallPaddle, {_maxDuration, _maxDuration}};
 }

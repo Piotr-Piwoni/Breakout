@@ -37,7 +37,7 @@ private:
 	float _timeLastPowerupSpawned;
 	int _lives;
 	bool _levelComplete;
-	std::pair<POWERUPS, float> _powerupInEffect;
+	std::pair<POWERUPS, sf::Vector2f> _powerupInEffect;
 
 	// Screen shake Variables.
 	float _shakeDuration{0.0f};

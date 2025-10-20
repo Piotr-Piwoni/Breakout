@@ -18,7 +18,7 @@ public:
 	void update(float dt);
 	void render();
 
-	virtual std::pair<POWERUPS, float> applyEffect() = 0;
+	virtual std::pair<POWERUPS, sf::Vector2f> applyEffect() = 0;
 	// Pure virtual method for applying the power-up effect
 	bool checkCollisionWithPaddle();
 

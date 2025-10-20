@@ -17,8 +17,8 @@ PowerupFireBall::~PowerupFireBall()
 	}
 }
 
-std::pair<POWERUPS, float> PowerupFireBall::applyEffect()
+std::pair<POWERUPS, sf::Vector2f> PowerupFireBall::applyEffect()
 {
 	_ball->setFireBall(_maxDuration);
-	return {fireBall, _maxDuration};
+	return {fireBall, {_maxDuration, _maxDuration}};
 }
