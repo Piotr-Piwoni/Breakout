@@ -3,7 +3,7 @@
 #include <iostream>
 
 PowerupBase::PowerupBase(sf::RenderWindow* window, Paddle* paddle,
-						 Ball* ball) : _time(0.0f)
+						 Ball* ball) : _time(0.0f), _maxDuration{5.0f}
 // Initialize the time variable
 {
 	_window = window;
