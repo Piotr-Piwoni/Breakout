@@ -33,7 +33,9 @@ void GameManager::initialize()
 
 	// Add sounds.
 	SoundManager::Get().LoadFile("bop", "sounds/bop.wav");
-	SoundManager::Get().Play("bop");
+	SoundManager::Get().LoadFile("bop2", "sounds/bop2.wav");
+	SoundManager::Get().LoadFile("hurt", "sounds/hurt.wav");
+	SoundManager::Get().LoadFile("win", "sounds/win.wav");
 }
 
 void GameManager::handleMovement(const float dt)
@@ -127,6 +129,7 @@ void GameManager::loseLife()
 	_lives--;
 	_ui->lifeLost(_lives);
 
+	SoundManager::Get().Play("hurt");
 	startScreenShake(0.4f, 12.0f);
 }
 
@@ -142,6 +145,7 @@ void GameManager::render()
 
 void GameManager::levelComplete()
 {
+	SoundManager::Get().Play("win");
 	_levelComplete = true;
 }
 

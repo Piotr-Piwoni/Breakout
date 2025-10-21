@@ -178,6 +178,9 @@
         <ClInclude Include="UI.h"/>
     </ItemGroup>
     <ItemGroup>
+        <Content Include="sounds\win.wav"/>
+        <Content Include="sounds\hurt.wav"/>
+        <Content Include="sounds\bop2.wav"/>
         <Content Include="sounds\bop.wav"/>
     </ItemGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
