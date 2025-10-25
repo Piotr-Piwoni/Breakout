@@ -17,6 +17,9 @@ public:
 
 	void updatePowerupText(std::pair<POWERUPS, sf::Vector2f>);
 	void updatePowerupBar(std::pair<POWERUPS, sf::Vector2f>);
+	void updateUltimateBar(float amount);
+
+	bool IsUltimateReady() const;
 
 	void lifeLost(int lives);
 
@@ -27,6 +30,7 @@ private:
 	sf::Font _font;
 	sf::Text _powerupText;
 	ProgressBar _progressBar;
+	ProgressBar _ultimateBar;
 	sf::CircleShape _powerupIcon{20.0f};
 
 	std::vector<sf::CircleShape> _lives;

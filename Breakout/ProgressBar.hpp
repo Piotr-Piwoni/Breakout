@@ -19,11 +19,17 @@ public:
 	float GetProgress() const;
 	void SetProgress(float val);
 
+	sf::Color GetBarColour() const;
+	void SetBarColour(sf::Color color);
+
 	sf::Vector2f GetPosition() const;
 	void SetPosition(sf::Vector2f pos);
 
 	sf::Vector2f GetSize() const;
 	void SetSize(sf::Vector2f size);
+
+	float GetRotation() const;
+	void SetRotation(float degrees);
 
 private:
 	void UpdateFillBar();
@@ -36,4 +42,5 @@ private:
 
 	sf::Vector2f m_Position{};
 	sf::Vector2f m_Size{100.0f, 10.0f};
+	float m_Angle{};
 };

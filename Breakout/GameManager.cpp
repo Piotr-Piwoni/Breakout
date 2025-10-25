@@ -3,6 +3,7 @@
 #include <random>
 #include "Ball.h"
 #include "PowerupManager.h"
+#include "TimeUtils.hpp"
 
 GameManager::GameManager(sf::RenderWindow* window) : _pause(false),
 	_pauseHold(0.f), _time(0.f), _timeLastPowerupSpawned(0.f), _lives(3),
@@ -79,6 +80,12 @@ void GameManager::handleInput(const sf::Event::KeyEvent key)
 	}
 	if (key.code == sf::Keyboard::M)
 		_usingMouse = !_usingMouse;
+	if (key.code == sf::Keyboard::E && _ui->IsUltimateReady() &&
+		!_ultimate.IsActive())
+	{
+		_ultimate.ApplyEffect();
+		_ui->updateUltimateBar(0.0f);
+	}
 }
 
 void GameManager::update(float dt)
@@ -86,6 +93,10 @@ void GameManager::update(float dt)
 	_powerupInEffect = _powerupManager->getPowerupInEffect();
 	_ui->updatePowerupBar(_powerupInEffect);
 	_powerupInEffect.second.y -= dt;
+
+	const float normalDeltaTime = dt / TimeUtils::GetTimeScale();
+	// Update in real time.
+	_ultimate.Update(normalDeltaTime);
 
 	if (_lives <= 0)
 	{
@@ -114,7 +125,7 @@ void GameManager::update(float dt)
 		_timeLastPowerupSpawned = _time;
 	}
 
-	handleMovement(dt);
+	handleMovement(normalDeltaTime);
 
 	// update everything
 	_paddle->update(dt);

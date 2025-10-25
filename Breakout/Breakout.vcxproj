@@ -155,8 +155,11 @@
         <ClCompile Include="PowerupSlowBall.cpp"/>
         <ClCompile Include="PowerupSmallPaddle.cpp"/>
         <ClCompile Include="ProgressBar.cpp"/>
+        <ClCompile Include="SlowMoUltimate.cpp"/>
         <ClCompile Include="SoundManager.cpp"/>
+        <ClCompile Include="TimeUtils.cpp"/>
         <ClCompile Include="UI.cpp"/>
+        <ClCompile Include="UltimateBase.cpp"/>
     </ItemGroup>
     <ItemGroup>
         <ClInclude Include="Ball.h"/>
@@ -174,8 +177,11 @@
         <ClInclude Include="PowerupSlowBall.h"/>
         <ClInclude Include="PowerupSmallPaddle.h"/>
         <ClInclude Include="ProgressBar.hpp"/>
+        <ClInclude Include="SlowMoUltimate.hpp"/>
         <ClInclude Include="SoundManager.hpp"/>
+        <ClInclude Include="TimeUtils.hpp"/>
         <ClInclude Include="UI.h"/>
+        <ClInclude Include="UltimateBase.hpp"/>
     </ItemGroup>
     <ItemGroup>
         <Content Include="sounds\win.wav"/>

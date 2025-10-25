@@ -57,9 +57,11 @@ int BrickManager::checkCollision(sf::CircleShape& ball, sf::Vector2f& direction)
 			// unless it's horizontal (collision from side)
 			collisionResponse = 1;
 
+		SoundManager::Get().Play("bop2");
+		_gameManager->getUI()->updateUltimateBar(15.0f);
+
 		// Mark the brick as destroyed (for simplicity, let's just remove it from rendering)
 		// In a complete implementation, you would set an _isDestroyed flag or remove it from the vector
-		SoundManager::Get().Play("bop2");
 		brick = _bricks.back();
 		_bricks.pop_back();
 		break;

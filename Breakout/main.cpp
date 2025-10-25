@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "GameManager.h"
+#include "TimeUtils.hpp"
 
 int main()
 {
@@ -31,6 +32,7 @@ int main()
 		}
 
 		deltaTime = clock.restart().asSeconds();
+		deltaTime *= TimeUtils::GetTimeScale();
 
 		gameManager.update(deltaTime);
 

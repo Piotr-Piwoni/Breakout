@@ -36,6 +36,18 @@ UI::UI(sf::RenderWindow* window, int lives, GameManager* gameManager) :
 		iconCenterY - _progressBar.GetSize().y / 2.0f
 	});
 	_progressBar.SetVisible(false);
+
+	// Ultimate Bar.
+	_ultimateBar.SetRotation(-90.0f);
+	_ultimateBar.SetBarColour(sf::Color::Yellow);
+	_ultimateBar.SetSize({170.0f, 20.0f});
+
+	const auto winSize = static_cast<sf::Vector2f>(_window->getSize());
+	const sf::Vector2f ultOffset = {50.0f, _ultimateBar.GetSize().x / 2.0f};
+	_ultimateBar.SetPosition({
+		winSize.x - ultOffset.x,
+		winSize.y / 2.0f + ultOffset.y
+	});
 }
 
 UI::~UI()
@@ -117,6 +129,28 @@ void UI::updatePowerupBar(std::pair<POWERUPS, sf::Vector2f> powerup)
 	}
 }
 
+void UI::updateUltimateBar(const float amount)
+{
+	// Check for reset value.
+	if (amount <= 0.0f)
+	{
+		_ultimateBar.SetProgress(0.0f);
+		return;
+	}
+
+	// Convert into a full value.
+	float currentProgress = _ultimateBar.GetProgress() * 100.0f;
+	currentProgress += amount;
+	// Calculate the remaining percentage.
+	const float newProgress = std::clamp(currentProgress / 100.0f, 0.0f, 1.0f);
+	_ultimateBar.SetProgress(newProgress);
+}
+
+bool UI::IsUltimateReady() const
+{
+	return _ultimateBar.GetProgress() >= 1.0f;
+}
+
 void UI::lifeLost(int lives)
 {
 	_lives[_lives.size() - 1 - lives].setFillColor(sf::Color::Transparent);
@@ -126,13 +160,13 @@ void UI::render()
 {
 	//_window->draw(_powerupText);
 
+	for (sf::CircleShape life : _lives)
+		_window->draw(life);
+
 	// Render te progress bar with a icon.
 	_progressBar.Render(*_window);
 	if (_progressBar.IsVisible())
 		_window->draw(_powerupIcon);
 
-	for (sf::CircleShape life : _lives)
-	{
-		_window->draw(life);
-	}
+	_ultimateBar.Render(*_window);
 }

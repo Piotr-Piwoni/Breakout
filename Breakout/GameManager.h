@@ -6,6 +6,7 @@
 #include "MessagingSystem.h"
 #include "Paddle.h"
 #include "PowerupManager.h"
+#include "SlowMoUltimate.hpp"
 #include "SoundManager.hpp"
 #include "UI.h"
 
@@ -42,6 +43,7 @@ private:
 	bool _levelComplete;
 	bool _usingMouse{false};
 	std::pair<POWERUPS, sf::Vector2f> _powerupInEffect;
+	SlowMoUltimate _ultimate;
 
 	// Screen shake Variables.
 	float _shakeDuration{0.0f};
